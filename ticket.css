@@ -1,0 +1,182 @@
+@charset "UTF-8";
+
+.navbar-custom {
+    background-color: #CC8B8C;
+}
+
+.form-control {
+    font-size: 0.9rem;
+    width: 300px;
+    padding-left: 30px;
+}
+
+.nav-link {
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+.navbar-nav {
+    gap: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: #000;
+    /* Default color */
+    transition: color 0.3s ease;
+    /* Smooth transition for color change */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffffff;
+    /* Color when hovered (change to your preferred color) */
+}
+
+/* Logo hover effect */
+.navbar-brand img {
+    transition: transform 0.3s ease;
+    /* Smooth transition for scaling */
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
+    /* Scale the logo slightly on hover */
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-container .fa-search {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Change text color to dark on hover */
+.text-white:hover {
+    color: rgb(70, 66, 66) !important;
+    /* Dark color on hover */
+}
+
+.divider {
+    color:white;
+}
+
+.subtitle {
+    background-color: rgb(157, 116, 116);
+    color: white;
+    font-weight: bold;
+    padding: 5px 20px;
+    border-radius: 15px;
+    text-align: center;
+    /* Shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ensures the rectangle hugs the content */
+    display: inline-block;
+    font-size: 1.10rem;
+}
+
+.nonsubtitle {
+    background-color: rgb(157, 116, 116);
+    color: white;
+    font-weight: bold;
+    padding: 5px 20px;
+    border-radius: 15px;
+    text-align: center;
+    /* Shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ensures the rectangle hugs the content */
+    display: inline-block;
+    font-size: 1.10rem;
+}
+
+.subtitle:hover {
+    transform: scale(1.05);
+}
+
+.chat-message {
+    font-size: 0.8rem;
+    /* Adjust the size as per your requirement */
+    background-color: #f0f0f0;
+    /* Light gray background for the speech bubble */
+    color: black;
+    /* Text color */
+    padding: 10px 15px;
+    /* Padding around the text */
+    border-radius: 15px;
+    /* Rounded corners */
+    max-width: 80%;
+    /* Limit width */
+    margin-bottom: 10px;
+    /* Space between messages */
+    margin-top: 10px;
+    position: relative;
+    /* To position the triangle */
+    margin-left: 10px;
+    /* Space from the left for the triangle */
+    text-align: left;
+    /* Align text to the left */
+}
+
+/* Triangle on the left side */
+.chat-message::after {
+    content: '';
+    /* Creates the triangle effect */
+    position: absolute;
+    top: 50%;
+    /* Position the triangle vertically in the middle */
+    left: -10px;
+    /* Position it slightly to the left of the bubble */
+    transform: translateY(-50%);
+    /* Centers the triangle vertically */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Invisible top part */
+    border-bottom: 10px solid transparent;
+    /* Invisible bottom part */
+    border-right: 10px solid #f0f0f0;
+    /* Triangle color same as the speech bubble */
+}
+
+.user-message {
+    position: relative;
+    background-color: #f0f0f0;
+    /* Light background for user message */
+    color: black;
+    /* Text color */
+    border-radius: 15px;
+    padding: 10px;
+    max-width: 70%;
+    /* Limit the width of the message */
+    margin: 5px 0;
+    text-align: left;
+    /* Align text to the left within the message */
+    margin-left: auto;
+    /* Push the message to the right side */
+    margin-right: 20px;
+    /* Add some space from the right side */
+}
+
+/* Triangle on the left side of the user message */
+.user-message::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    /* Position the triangle vertically in the middle */
+    right: -10px;
+    /* Position it slightly to the left of the bubble */
+    transform: translateY(-50%);
+    /* Rotate the triangle 90 degrees anticlockwise */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Invisible top part */
+    border-bottom: 10px solid transparent;
+    /* Invisible bottom part */
+    border-left: 10px solid #f0f0f0;
+    /* Triangle color same as the speech bubble */
+}

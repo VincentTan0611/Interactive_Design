@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert Details</title>
+    <link rel="icon" href="named.png" type="png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for the icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ticket.css">
+
+    <style>
+        .grow-hover,
+        .grow-map {
+            transition: transform 0.3s ease;
+        }
+
+        .grow-hover:hover,
+        .grow-map:hover {
+            transform: scale(1.05);
+        }
+
+        /* Show the image when the checkbox is checked */
+        #interested:checked+label img,
+        #going:checked+label img {
+            display: block;
+        }
+
+        label {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+            <div class="container d-flex justify-content-between align-items-center w-100">
+                <div class="d-flex align-items-center">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="logo.png" alt="Concert Logo" style="max-width: 100px; height: auto; margin-top:8px;">
+                    </a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav d-flex">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Concert.html"
+                                    style="font-weight: bold; font-size: 1.0rem;">Concerts</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Artists</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Festivals</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Tourbox For Artists</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html"
+                                    style="font-weight: bold; font-size: 1.0rem;">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <form class="d-flex justify-content-center w-25" role="search">
+                    <div class="search-container">
+                        <input class="form-control" type="search" placeholder="Search for events or artists"
+                            aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </form>
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav d-flex">
+                        <li class="nav-item"><a class="nav-link" href="#"
+                                style="font-weight: bold; font-size: 1.0rem;">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"
+                                style="font-weight: bold; font-size: 1.0rem;">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="first" style="background-color: #ffffff; padding: 50px 0;">
+        <div class="container"
+            style="display: flex; justify-content: space-between; align-items: center; margin-left:100px;">
+            <!-- Left side: Heading and Checkboxes -->
+            <div>
+                <h2 style="color: black; text-align: left; font-size: 1.8em; margin-top: 50px;">
+                    <strong>IVE RELAY TOUR CONCERT <br> 2025 IN KUALA LUMPUR</strong>
+                </h2>
+
+                <!-- Rectangle 1: INTERESTED -->
+                <div
+                    style="background-color: #D9D9D9; color: rgb(0, 0, 0); margin-top: 30px; width: 100%; display: flex; align-items: center; box-sizing: border-box; height: 60px; flex-shrink: 0;">
+                    <!-- Hidden Checkbox -->
+                    <input type="checkbox" id="interested" style="display: none;">
+                    <!-- Square styled as a checkbox -->
+                    <label for="interested"
+                        style="background-color: #D2BCD9; width: 60px; height: 60px; margin-right: 15px; flex-shrink: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; position: relative;">
+                        <!-- Image of the checkmark (hidden initially) -->
+                        <img id="tick-interested" src="checked.png" alt="checked"
+                            style="position: absolute; width: 30px; height: 30px; display: none;" />
+                    </label>
+                    <!-- Text on the right -->
+                    <label for="interested"
+                        style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; font-size: 1.5em; cursor: pointer; margin-right: 15px;">
+                        <strong>INTERESTED</strong>
+                    </label>
+                </div>
+
+                <!-- Rectangle 2: GOING -->
+                <div
+                    style="background-color: #D9D9D9; color: rgb(0, 0, 0); margin-top: 20px; width: 100%; display: flex; align-items: center; box-sizing: border-box; height: 60px; flex-shrink: 0;">
+                    <!-- Hidden Checkbox -->
+                    <input type="checkbox" id="going" style="display: none;">
+                    <!-- Square styled as a checkbox -->
+                    <label for="going"
+                        style="background-color: #D2BCD9; width: 60px; height: 60px; margin-right: 15px; flex-shrink: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; position: relative;">
+                        <!-- Image of the checkmark (hidden initially) -->
+                        <img id="tick-going" src="checked.png" alt="checked"
+                            style="position: absolute; width: 30px; height: 30px; display: none;" />
+                    </label>
+                    <!-- Text on the right -->
+                    <label for="going"
+                        style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; font-size: 1.5em; cursor: pointer; margin-right: 30px;">
+                        <strong>GOING</strong>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Right side: Image -->
+            <div style="padding-top: 60px; width: 400px; height: 400px; position: relative; margin-right:100px;">
+                <img src="concert_7.5.jpg" alt="concert" style="width: 85%; height: 100%; border-radius: 10px;">
+            </div>
+
+            <script>
+                document.getElementById("interested").addEventListener("change", function () {
+                    var tickImage = document.getElementById("tick-interested");
+                    if (this.checked) {
+                        tickImage.style.display = "block"; // Show the image when checked
+                    } else {
+                        tickImage.style.display = "none"; // Hide the image when unchecked
+                    }
+                });
+                document.getElementById("going").addEventListener("change", function () {
+                    var tickImage = document.getElementById("tick-going");
+                    if (this.checked) {
+                        tickImage.style.display = "block"; // Show the image when checked
+                    } else {
+                        tickImage.style.display = "none"; // Hide the image when unchecked
+                    }
+                });
+
+                document.getElementById("interested").addEventListener("change", function () {
+                    var tickImage = document.getElementById("tick-interested");
+                    if (this.checked) {
+                        tickImage.style.display = "block"; // Show the image when checked
+                        alert("Your choice has been saved: Interested");
+                    } else {
+                        tickImage.style.display = "none"; // Hide the image when unchecked
+                        alert("Your choice has been saved: Not Interested");
+                    }
+                });
+
+                document.getElementById("going").addEventListener("change", function () {
+                    var tickImage = document.getElementById("tick-going");
+                    if (this.checked) {
+                        tickImage.style.display = "block"; // Show the image when checked
+                        alert("Your choice has been saved: Going");
+                    } else {
+                        tickImage.style.display = "none"; // Hide the image when unchecked
+                        alert("Your choice has been saved: Not Going");
+                    }
+                });
+            </script>
+
+    </section>
+
+    <section class="second" style="background-color: #C69DD2; padding: 20px 0;">
+        <div class="container">
+            <!-- Heading for Event Details -->
+            <h2 class="text-center" style="color: white;">Event Details</h2>
+        </div>
+    </section>
+
+    <section class="third" style="background-color: #d6cada; padding: 50px 0;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <!-- Artist Heading and Description (left side) -->
+            <div style="width: 45%;">
+                <h1 class="nonsubtitle" style="color: white; font-size: 1.5em;">Artist</h1>
+                <p
+                    style="color: rgb(0, 0, 0); font-size: 1.2em; line-height: 1.6; text-align: left; text-align: justify;">
+                    Ive is a South Korean girl group that is formed under Starship Entertainment. The group consists of
+                    six members: <strong>An Yujin, Gaeul, Rei, Jang Wonyoung, Liz</strong> and <strong>Leeseo</strong>.
+                    They are going on tour around Asia in 2025 starting from South Korea and ending in Singapore.
+                </p>
+            </div>
+
+            <!-- Map Heading and Description (right side) -->
+            <div style="width: 45%; text-align: left; margin-left: 250px;">
+                <h1 class="nonsubtitle" style="color: white; font-size: 1.5em;">Map</h1>
+
+                <!-- Square Image under the Map heading -->
+                <a href="https://www.google.com.my/maps/place/Axiata+Arena+Bukit+Jalil/@3.0538145,101.6934339,17z/data=!3m1!4b1!4m6!3m5!1s0x31cc4a97daf75aff:0x35e03f9f339a13b1!8m2!3d3.0538145!4d101.6934339!16zL20vMGN6N3dt?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank">
+                    <img src="mapping.png" alt="Map" class="grow-map"
+                        style="width: 300px; height: 300px; margin-top: 10px; display: block; border: 1px solid #000;">
+                </a>
+
+                <!-- Location Icon and Text beside the Map image -->
+                <div style="display: flex; align-items: center; margin-top: 15px;">
+                    <img src="location.png" alt="Location" style="width: 32px; height: 32px; margin-right: 10px;">
+                    <span style="color: black; font-size: 1.2em;"><strong>Axiata Arena</strong></span>
+                </div>
+
+                <!-- Location Description beside the Icon and Text -->
+                <p style="color: black; font-size: 1em; margin-top: 10px; max-width: 300px; text-align: justify;">
+                    L2-E-10, Enterprise 4, Technology Park Malaysia, Lebuhraya Bukit Jalil 57000 Kuala Lumpur, Kuala
+                    Lumpur
+                </p>
+
+                <h1 class="nonsubtitle" style="color: white; font-size: 1.5em;margin-top: 50px;">Buy Tickets</h1>
+
+                <!-- Rectangles with Text Inside -->
+                <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 20px; margin-bottom:300px;">
+
+                    <!-- First Rectangle -->
+                    <div class="grow-hover"
+                        style="border: 0.2px solid grey; padding: 15px; font-size: 1.2em; width: 400px; background-color: #C69DD2; text-align: left; height: 70px; display: flex; align-items: center; border-radius: 10px; cursor: pointer;">
+                        <strong style="flex-grow: 1; white-space: nowrap;">Ticket2U Website</strong>
+                        <img src="arrow.png" alt="Arrow" style="width: 40px; height: 40px; margin-left: 160px;">
+                    </div>
+
+                    <!-- Second Rectangle -->
+                    <div class="grow-hover"
+                        style="border: 0.2px solid grey; padding: 15px; font-size: 1.2em; width: 400px; background-color: #C69DD2; text-align: left; height: 70px; display: flex; align-items: center; border-radius: 10px; cursor: pointer;">
+                        <strong style="flex-grow: 1; white-space: nowrap;">TicketMaster Website</strong>
+                        <img src="arrow.png" alt="Arrow" style="width: 40px; height: 40px; margin-left: 130px;">
+                    </div>
+
+                    <!-- Third Rectangle -->
+                    <div class="grow-hover"
+                        style="border: 0.2px solid grey; padding: 15px; font-size: 1.2em; width: 400px; background-color: #C69DD2; text-align: left; height: 70px; display: flex; align-items: center; border-radius: 10px; cursor: pointer;">
+                        <strong style="flex-grow: 1; white-space: nowrap;">BookMyShow Website</strong>
+                        <img src="arrow.png" alt="Arrow" style="width: 40px; height: 40px; margin-left: 120px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adjust the negative margin to move content up -->
+    <div style="margin-top: -958px;"> 
+        <h1 class="nonsubtitle" style="color: white; font-size: 1.5em; margin-left: 70px;">Event Details</h1>
+
+        <!-- Icons and text in columns -->
+        <div style="position: relative; padding-top: 20px; margin-left: 70px;">
+            <!-- Top Icons and Text (Calendar and Location) -->
+            <div style="display: flex; flex-direction: column; align-items: left; z-index: 2; margin-bottom: 30px;">
+                <!-- Calendar Icon -->
+                <div style="display: flex; align-items: center; margin-bottom: 10px; margin-left: 0px;">
+                    <img src="calendar.png" alt="Calendar" style="width: 30px; height: 30px; margin-right: 5px;">
+                    <span style="color: black; font-size: 1.05em; margin-left:5px;"><strong>21 Jan 2025</strong></span>
+                </div>
+
+                <!-- Location Icon (placed below calendar) -->
+                <div style="display: flex; align-items: left; margin-top: 10px; margin-left: 0px;">
+                    <img src="location.png" alt="Location" style="width: 32px; height: 32px; margin-right: 5px;">
+                    <span style="color: black; font-size: 1.05em; margin-top: 3px; margin-left: 5px;"><strong>Sunway
+                            Lagoon</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clock Icon -->
+        <div style="display: flex; align-items: left; margin-top:-10px; margin-left: 70px;">
+            <img src="clock.png" alt="Clock" style="width: 32px; height: 32px; margin-right: 5px;">
+            <span
+                style="color: black; font-size: 1.05em; margin-top: 3px; margin-left: 5px;"><strong>5:00pm</strong></span>
+        </div>
+
+        <!-- Price Icon (placed below the clock icon) -->
+        <div style="display: flex; align-items: left; margin-top: 20px; margin-left: 70px;">
+            <img src="ticket.png" alt="Price" style="width: 32px; height: 32px; margin-right: 5px;">
+            <span style="color: black; font-size: 1.05em; margin-top: 3px; margin-left: 5px;"><strong>RM
+                    90+</strong></span>
+        </div>
+
+        <h1 class="nonsubtitle" style="color: white; font-size: 1.5em; margin-top: 30px; margin-left: 70px;">Additional
+            Details</h1>
+
+        <!-- Unordered List for Bullet Points -->
+        <ul
+            style="color: rgb(0, 0, 0); font-size: 1.05em; margin-top: 20px; list-style-type: disc; padding-left: 30px; margin-left: 60px; margin-bottom: 250px;">
+            <li><strong>Price: RM 90 - RM 1000</strong></li>
+            <li><strong>Door Opens: 3:30pm</strong></li>
+            <li><strong>Ticket Opens: 30 Nov 2024, 11:00am</strong></li>
+        </ul>
+    </div>
+
+    </section>
+
+
+    <footer class="text-white py-4" style="background-color: #CC8B8C;">
+        <div class="container">
+            <div class="row">
+                <!-- Songkick Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Songkick</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">About us</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">News</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Blog</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Jobs</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Festivals</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Most popular charts</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Get the app</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Live streams</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industry Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Industry</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Campaigns for promoters</a>
+                        </li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">API information</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Help & FAQ</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Community <br> guidelines</a>
+                        </li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Brand <br> guidelines</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Cookies Policy</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Security</a></li>
+                    </ul>
+                </div>
+
+                <!-- Language Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Language</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">English</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Français</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Español</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Deutsch</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Português</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Chinese</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Malay</a></li>
+                    </ul>
+                </div>
+
+                <!-- Genre Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Genre</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Rock</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Pop</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Hip-Hop</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Electronic</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Metal</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Country</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Comedy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" style="margin-top: 50px;">
+                <!-- Social Media links and Legal Text -->
+                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                    <!-- Social Media links on the left -->
+                    <div class="d-flex justify-content-start">
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="youtube.png" alt="YouTube"
+                                style="width: 20px; height: 20px; margin-right: 10px; margin-top:10px;">
+                            YouTube
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="instagram.png" alt="Instagram"
+                                style="width: 20px; height: 20px; margin-right: 10px;">
+                            Instagram
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="tik-tok.png" alt="TikTok" style="width: 20px; height: 20px; margin-right: 10px;">
+                            TikTok
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="facebook.png" alt="Facebook"
+                                style="width: 20px; height: 20px; margin-right: 10px;">
+                            Facebook
+                        </div>
+                        <div class="subtitle d-flex align-items-center" style=" cursor: pointer;">
+                            <img src="twitter.png" alt="Twitter" style="width: 20px; height: 20px; margin-right: 10px;">
+                            X
+                        </div>
+                    </div>
+
+                    <!-- Partner and legal text to the right -->
+                    <div class="ms-auto text-end"
+                        style="display: flex; flex-direction: column; align-items: flex-end; margin-top: -50px;">
+                        <span class="partner-text" style="color: rgb(70, 66, 66);"><strong>Official
+                                Partner</strong></span>
+                        <img src="partner.png" alt="Partner Image"
+                            style="max-width: 100%; height: auto; margin-bottom: 0px;">
+                        <span>
+                            <span class="text-white" style=" cursor: pointer;">Terms & Conditions</span>
+                            <span class="divider">|</span>
+                            <span class="text-white" style=" cursor: pointer;">Privacy Policy</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Chatbot Interfaces -->
+        <div class="col-md-8 text-md-end mt-4 mt-md-0" style="position: relative; top: 50px;">
+            <!-- Chatbot icon -->
+            <div id="chatbot-icon" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 9999;">
+                <img src="AI Chatbot.png" alt="Chatbot" style="width: 60px; height: 60px; object-fit: cover;">
+            </div>
+
+            <!-- Chatbot interface -->
+            <div id="chatbot-interface"
+                style="display: none; position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background-color: white; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index: 9999;">
+                <div style="background-color: #CC8B8C; color: white; padding: 10px; border-radius: 10px 10px 0 0;">
+                    <h5 style="margin: 0; text-align: left;">AI Chatbot</h5>
+                </div>
+                <!-- Chatbot messages -->
+                <div id="chat-messages"
+                    style="padding: 10px; overflow-y: scroll; height: 280px; max-height: 280px; color: black;">
+                </div>
+                <input type="text" id="user-input" placeholder="Type a message..."
+                    style="width: 100%; padding: 10px; border: none; border-radius: 0 0 10px 10px;" />
+                <button id="send-message"
+                    style="width: 100%; padding: 10px; background-color: #876969; color: white; border: none; border-radius: 0 0 10px 10px;">Send</button>
+            </div>
+        </div>
+
+        <!-- Chatbot Script -->
+        <script>
+            // Toggle visibility of chat interface and show automatic message
+            document.getElementById('chatbot-icon').onclick = function () {
+                var chatbotInterface = document.getElementById('chatbot-interface');
+                var chatMessages = document.getElementById('chat-messages');
+
+                // Check the current state of the chatbot interface
+                if (chatbotInterface.style.display === 'none' || chatbotInterface.style.display === '') {
+                    // Show chatbot interface
+                    chatbotInterface.style.display = 'block';
+
+                    // Create welcome message from the chatbot
+                    var welcomeMessage = document.createElement('div');
+                    welcomeMessage.classList.add('chat-message');
+                    welcomeMessage.innerHTML = '<strong><span style="font-size: 0.8rem;">My name is Panicbot! How can I assist you today?</span></strong>';
+                    chatMessages.appendChild(welcomeMessage);
+
+                    // Scroll to the bottom of the container to show the message
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                } else {
+                    // Hide chatbot interface
+                    chatbotInterface.style.display = 'none';
+                }
+            };
+
+            // Handle message sending when the user clicks the send button
+            document.getElementById('send-message').onclick = function () {
+                var userInput = document.getElementById('user-input').value;
+                if (userInput.trim() !== "") {
+                    var userMessage = document.createElement('div');
+                    userMessage.innerHTML = '<div class="user-message"><strong><span style="font-size: 0.8em;">' + userInput + '</span></strong></div>';
+                    document.getElementById('chat-messages').appendChild(userMessage);
+
+                    // Clear input field
+                    document.getElementById('user-input').value = "";
+
+                    // Simulate chatbot response after 1 second
+                    setTimeout(function () {
+                        var chatbotResponse = document.createElement('div');
+                        chatbotResponse.classList.add('chat-message');
+                        chatbotResponse.innerHTML = '<strong><span style="font-size: 0.8rem;">Thank you for your response.</span></strong>';
+                        document.getElementById('chat-messages').appendChild(chatbotResponse);
+
+                        // Scroll to the bottom of the messages to show new response
+                        var chatContainer = document.getElementById("chat-messages");
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }, 1000);
+                }
+            };
+
+            // Trigger send message when the Enter key is pressed
+            document.getElementById('user-input').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('send-message').click();
+                }
+            });
+        </script>
+
+        <!-- Footer -->
+        <footer class="text-center py-3" style="margin-top: 50px;">
+            <p><span style="color: rgb(70, 66, 66);"><strong>For Fans, by Fans</strong></span></p>
+            <p style="color: rgb(255, 255, 255); margin-top: -5px; margin-bottom: 0;">© 2024 Copyright.Songkick</p>
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

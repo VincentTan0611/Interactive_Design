@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Form</title>
+    <link rel="icon" href="named.png" type="png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN for the icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ticket.css">
+
+    <style>
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .request-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .request-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .request-form input,
+        .request-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .char-limit {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .checkbox label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #d3a5b6;
+            border: none;
+            color: #fff;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Submit Button Hover Effect */
+        .submit-btn:hover {
+            background-color: #845966;
+        }
+
+        /* Popup modal */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content>* {
+            margin-bottom: 20px;
+        }
+
+        /* Close Button */
+        .popup-content>button {
+            background-color: #CC8B8C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Close Button Hover Effect */
+        .popup-content>button:hover {
+            background-color: #845966;
+        }
+
+        /* Confirmation Message */
+        .confirmation-message {
+            font-size: 1em;
+            color: #000000;
+            text-align: left;
+            font-weight: normal;
+        }
+
+        .popup-content img {
+            margin-bottom: 10px;
+        }
+
+        .popup-content h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+            <div class="container d-flex justify-content-between align-items-center w-100">
+                <div class="d-flex align-items-center">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="logo.png" alt="Concert Logo" style="max-width: 100px; height: auto; margin-top:8px;">
+                    </a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav d-flex">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Concert.html"
+                                    style="font-weight: bold; font-size: 1.0rem;">Concerts</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Artists</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Festivals</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Tourbox For Artists</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html"
+                                    style="font-weight: bold; font-size: 1.0rem;">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <form class="d-flex justify-content-center w-25" role="search">
+                    <div class="search-container">
+                        <input class="form-control" type="search" placeholder="Search for events or artists"
+                            aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </form>
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav d-flex">
+                        <li class="nav-item"><a class="nav-link" href="#"
+                                style="font-weight: bold; font-size: 1.0rem;">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"
+                                style="font-weight: bold; font-size: 1.0rem;">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="form-section" style="padding:50px;">
+        <h1 class="nonsubtitle" style="margin-top:50px; font-size: 1.8em;">SUBMIT YOUR REQUEST</h1>
+        <form action="#" method="POST" class="request-form" style="margin-top:50px; ">
+            <div class="form-group" id="request-form" style="display: flex; gap: 20px;">
+                <div style="flex: 1; display: flex; flex-direction: column;">
+                    <label for="first-name" class="subtitle" style="margin-bottom: 5px; width:130px; ">First
+                        Name</label>
+                    <input type="text" id="first-name" placeholder="Enter your first name">
+                </div>
+                <div style="flex: 1; display: flex; flex-direction: column;">
+                    <label for="last-name" class="subtitle" style="margin-bottom: 5px; width:130px;">Last Name</label>
+                    <input type="text" id="last-name" placeholder="Enter your last name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="nonsubtitle" style="width:160px;">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="title" class="nonsubtitle" style="width:90px;">Title</label>
+                <input type="text" id="title" placeholder="Enter a title">
+            </div>
+            <div class="form-group">
+                <label for="description" class="nonsubtitle" style="width:140px;">Description</label>
+                <textarea id="description" placeholder="Enter the description" style="margin-top: 1px;"></textarea>
+                <p class="char-limit">Maximum: 5000 characters</p>
+            </div>
+
+            <div class="form-group" style="width: 100%; margin-top: -30px;">
+                <div class="d-flex align-items-center" style="width: 100%;">
+                    <!-- Attachments Label -->
+                    <label for="attachments" class="nonsubtitle"
+                        style="width: 150px; margin-right: 10px;">Attachment</label>
+
+                    <!-- Checkbox and its label -->
+                    <div class="form-group checkbox mt-0"
+                        style="margin-left: auto; display: flex; align-items: center;">
+                        <input type="checkbox" id="add-more-attachments-checkbox"
+                            style="margin-right: 5px; margin-top: 30px;">
+                        <p for="add-more-attachments-checkbox" style="margin-top: 45px; white-space: nowrap;">Add one
+                            more attachment</p>
+                    </div>
+                </div>
+
+                <div id="attachments-container" style="position: relative; top: -30px;">
+                    <input type="file" id="attachments" style="width: 100%; max-width: 100%; margin-bottom: 10px;">
+                    <!-- Original file input -->
+                </div>
+
+                <!-- Container to append additional file input fields -->
+                <div id="additional-attachments-container" style="margin-top: 0px;"></div>
+                <!-- Container for new inputs -->
+
+                <!-- Checkbox Group -->
+                <div class="checkgroup" id="checkbox-group"
+                    style="width: 100%; display: flex; flex-direction: column; align-items: flex-start; margin-top: -20px; padding-left:5px;">
+                    <div class="checkbox"
+                        style="display: flex; align-items: center; margin-left: 0; white-space: nowrap;">
+                        <input type="checkbox" style="margin-right: 10px; margin-bottom: 15px;">
+                        <p>I agree to the Terms & Conditions. My personal information will be processed for the purposes
+                            as outlined in the Songkick submission request.</p>
+                    </div>
+                    <div class="checkbox"
+                        style="display: flex; align-items: center; margin-left: 0; white-space: nowrap;">
+                        <input type="checkbox" style="margin-right: 10px; margin-bottom: 15px;">
+                        <p>I certify that the information submitted is true and accurate and that I have the right to
+                            submit this request.</p>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // Function to add a new attachment input field
+                document.getElementById('add-more-attachments-checkbox').addEventListener('change', function () {
+                    const container = document.getElementById('additional-attachments-container');
+                    const checkboxGroup = document.getElementById('checkbox-group'); 
+
+                    const currentInputs = container.querySelectorAll('input[type="file"]');
+
+                    if (this.checked && currentInputs.length < 2) {
+                        // Clone the original container structure and append to the additional container
+                        const originalAttachmentContainer = document.getElementById('attachments-container');
+                        const newAttachmentContainer = originalAttachmentContainer.cloneNode(true); // Deep clone
+
+                        // Clear the file input in the cloned container
+                        newAttachmentContainer.querySelector('input[type="file"]').value = "";
+
+                        // Move the new container to the additional attachments section
+                        container.appendChild(newAttachmentContainer);
+
+                        checkboxGroup.style.marginTop = '-10px'; 
+
+                    } else {
+                        // Clear the container when the checkbox is unchecked
+                        container.innerHTML = '';
+                        this.disabled = false; 
+
+                        // Reset the marginTop of the checkbox group to its original position
+                        checkboxGroup.style.marginTop = '0px'; 
+                    }
+                });
+            </script>
+
+            <button type="button" class="submit-btn" style="position: relative; top: 0px;"
+                onclick="handleSubmit()">Submit</button>
+        </form>
+
+        <script>
+            function handleSubmit() {
+                // Select the checkboxes
+                const checkboxes = document.querySelectorAll('.checkgroup input[type="checkbox"]');
+                const isAllChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
+
+                // If not all checkboxes are checked, show an error popup
+                if (!isAllChecked) {
+                    alert("Please tick both checkboxes below to proceed:\n\n- Agree to terms & conditions\n- Certify information submitted is true and accurate");
+                    return; 
+                }
+
+                // Show successfully popup
+                showPopup(); // Show the success popup
+
+                // Clear all input fields manually
+                const form = document.querySelector('.request-form');
+
+                if (form) {
+                    // Clear all fields
+                    form.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach((input) => {
+                        input.value = ''; // Reset value to empty
+                    });
+
+                    // Clear all file inputs
+                    form.querySelectorAll('input[type="file"]').forEach((fileInput) => {
+                        fileInput.value = ''; // Reset file inputs
+                    });
+
+                    // Clear dynamically added attachment fields
+                    const additionalAttachmentsContainer = document.getElementById('additional-attachments-container');
+                    if (additionalAttachmentsContainer) {
+                        additionalAttachmentsContainer.innerHTML = ''; // Remove all dynamically added attachments
+                    }
+
+                    // Clear checkboxes
+                    form.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+                        checkbox.checked = false; // Uncheck checkboxes
+                    });
+
+                    console.log("Form cleared manually!");
+                } else {
+                    console.error("Form not found!");
+                }
+            }
+
+        </script>
+
+        <!-- Popup Modal -->
+        <div class="popup" id="popup">
+            <div class="popup-content"
+                style="background-color: #F9E9FD; border: 1px solid rgb(0, 0, 0); max-width: 600px; padding: 20px;">
+                <h3>Request Sent !</h3>
+                <!-- Success icon -->
+                <img src="checked.png" alt="Success Icon" style="width: 50px; height: 50px; margin-top:10px;">
+                <!-- Success Text -->
+                <p class="nonsubtitle" style="font-size: 1.3em; margin: 10px 0; text-align: center;">SUCCESS</p>
+                <!-- Confirmation message -->
+                <p class="confirmation-message" style="font-size: 1em;">
+                <ul style="margin-top: 10px; padding-left: 20px; list-style-type: disc; text-align: left;">
+                    <li>Please allow up to 3 working days to receive a confirmation email from us.</li>
+                    <li>If you don't receive the email, kindly resubmit the request form again.</li>
+                </ul>
+                </p>
+                <!-- Close Button -->
+                <button onclick="closePopup()">Close</button>
+            </div>
+        </div>
+
+        <script>
+            // Function to show the popup
+            function showPopup() {
+                document.getElementById('popup').style.display = 'flex';
+            }
+
+            // Function to close the popup
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+        </script>
+
+
+    </section>
+
+    <footer class="text-white py-4" style="background-color: #CC8B8C;">
+        <div class="container">
+            <div class="row">
+                <!-- Songkick Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Songkick</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">About us</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">News</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Blog</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Jobs</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Festivals</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Most popular charts</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Get the app</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Live streams</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industry Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Industry</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Campaigns for promoters</a>
+                        </li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">API information</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Help & FAQ</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Community <br> guidelines</a>
+                        </li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Brand <br> guidelines</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Cookies Policy</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Security</a></li>
+                    </ul>
+                </div>
+
+                <!-- Language Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Language</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">English</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Français</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Español</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Deutsch</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Português</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Chinese</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Malay</a></li>
+                    </ul>
+                </div>
+
+                <!-- Genre Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Genre</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Rock</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Pop</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Hip-Hop</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Electronic</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Metal</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Country</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Comedy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" style="margin-top: 50px;">
+                <!-- Social Media links and legal text -->
+                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                    <!-- Social Media links on the left -->
+                    <div class="d-flex justify-content-start">
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="youtube.png" alt="YouTube"
+                                style="width: 20px; height: 20px; margin-right: 10px; margin-top:10px;">
+                            YouTube
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="instagram.png" alt="Instagram"
+                                style="width: 20px; height: 20px; margin-right: 10px;">
+                            Instagram
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="tik-tok.png" alt="TikTok" style="width: 20px; height: 20px; margin-right: 10px;">
+                            TikTok
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="facebook.png" alt="Facebook"
+                                style="width: 20px; height: 20px; margin-right: 10px;">
+                            Facebook
+                        </div>
+                        <div class="subtitle d-flex align-items-center" style=" cursor: pointer;">
+                            <img src="twitter.png" alt="Twitter" style="width: 20px; height: 20px; margin-right: 10px;">
+                            X
+                        </div>
+                    </div>
+
+                    <!-- Partner and legal text -->
+                    <div class="ms-auto text-end"
+                        style="display: flex; flex-direction: column; align-items: flex-end; margin-top: -50px;">
+                        <span class="partner-text" style="color: rgb(70, 66, 66);"><strong>Official
+                                Partner</strong></span>
+                        <img src="partner.png" alt="Partner Image"
+                            style="max-width: 100%; height: auto; margin-bottom: 0px;">
+                        <span>
+                            <span class="text-white" style=" cursor: pointer;">Terms & Conditions</span>
+                            <span class="divider">|</span>
+                            <span class="text-white" style=" cursor: pointer;">Privacy Policy</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Chatbot Interfaces -->
+        <div class="col-md-8 text-md-end mt-4 mt-md-0" style="position: relative; top: 50px;">
+            <!-- Chatbot icon -->
+            <div id="chatbot-icon" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 9999;">
+                <img src="AI Chatbot.png" alt="Chatbot" style="width: 60px; height: 60px; object-fit: cover;">
+            </div>
+
+            <!-- Chatbot interface -->
+            <div id="chatbot-interface"
+                style="display: none; position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background-color: white; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index: 9999;">
+                <div style="background-color: #CC8B8C; color: white; padding: 10px; border-radius: 10px 10px 0 0;">
+                    <h5 style="margin: 0; text-align: left;">AI Chatbot</h5>
+                </div>
+                <!-- Chat messages -->
+                <div id="chat-messages"
+                    style="padding: 10px; overflow-y: scroll; height: 280px; max-height: 280px; color: black;">
+                </div>
+                <input type="text" id="user-input" placeholder="Type a message..."
+                    style="width: 100%; padding: 10px; border: none; border-radius: 0 0 10px 10px;" />
+                <button id="send-message"
+                    style="width: 100%; padding: 10px; background-color: #876969; color: white; border: none; border-radius: 0 0 10px 10px;">Send</button>
+            </div>
+        </div>
+
+        <!-- Chatbot Script -->
+        <script>
+            // Toggle visibility of chat interface and show automatic message
+            document.getElementById('chatbot-icon').onclick = function () {
+                var chatbotInterface = document.getElementById('chatbot-interface');
+                var chatMessages = document.getElementById('chat-messages');
+
+                // Check the current state of the chatbot interface
+                if (chatbotInterface.style.display === 'none' || chatbotInterface.style.display === '') {
+                    // Show chatbot interface
+                    chatbotInterface.style.display = 'block';
+
+                    // Create welcome message from the chatbot
+                    var welcomeMessage = document.createElement('div');
+                    welcomeMessage.classList.add('chat-message');
+                    welcomeMessage.innerHTML = '<strong><span style="font-size: 0.8rem;">My name is Panicbot! How can I assist you today?</span></strong>';
+                    chatMessages.appendChild(welcomeMessage);
+
+                    // Scroll to the bottom of the container to show the message
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                } else {
+                    // Hide chatbot interface
+                    chatbotInterface.style.display = 'none';
+                }
+            };
+
+            // Handle message sending when the user clicks the send button
+            document.getElementById('send-message').onclick = function () {
+                var userInput = document.getElementById('user-input').value;
+                if (userInput.trim() !== "") {
+                    var userMessage = document.createElement('div');
+                    // User message with speech bubble on the right
+                    userMessage.innerHTML = '<div class="user-message"><strong><span style="font-size: 0.8em;">' + userInput + '</span></strong></div>';
+                    document.getElementById('chat-messages').appendChild(userMessage);
+
+                    // Clear input field
+                    document.getElementById('user-input').value = "";
+
+                    // Simulate chatbot response after 1 second
+                    setTimeout(function () {
+                        var chatbotResponse = document.createElement('div');
+                        chatbotResponse.classList.add('chat-message');
+                        chatbotResponse.innerHTML = '<strong><span style="font-size: 0.8rem;">Thank you for your response.</span></strong>';
+                        document.getElementById('chat-messages').appendChild(chatbotResponse);
+
+                        // Scroll to the bottom of the chat messages to show the new response
+                        var chatContainer = document.getElementById("chat-messages");
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }, 1000);
+                }
+            };
+
+            // Trigger send message when the Enter key is pressed
+            document.getElementById('user-input').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('send-message').click();
+                }
+            });
+        </script>
+
+        <!-- Footer -->
+        <footer class="text-center py-3" style="margin-top: 50px;">
+            <p><span style="color: rgb(70, 66, 66);"><strong>For Fans, by Fans</strong></span></p>
+            <p style="color: rgb(255, 255, 255); margin-top: -5px; margin-bottom: 0;">© 2024 Copyright.Songkick</p>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

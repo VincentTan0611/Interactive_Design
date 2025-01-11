@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert</title>
+    <link rel="icon" href="named.png" type="png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for the icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ticket.css">
+
+    <style>
+        /* Grid container for 3x4 layout for 3 columns + 4 rows */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            /* Add gaps between the grid items */
+            gap: 15px;
+            /* Add padding around the grid */
+            padding: 20px;
+        }
+
+        .filters-container {
+            display: flex;
+            /* Vertically center align all items */
+            align-items: center;
+            /* Space out items evenly */
+            justify-content: space-between;
+            /* Extend to the full width */
+            width: 100%;
+            padding: 10px 20px;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-icon {
+            display: flex;
+            align-items: center;
+            /* Add gaps between icon and reset button */
+            gap: 10px;
+        }
+
+        .sort-label {
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .sort-dropdown {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .reset-btn {
+            background-color: #CC8B8C !important;
+            /* Force the initial background color */
+            border: none;
+            color: white;
+            width: 110px;
+            font-size: 18px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+            /* Smooth transition for color change */
+        }
+
+        /* Hover effect for the reset button */
+        .reset-btn:hover {
+            background-color: #A67C7C !important;
+        }
+
+        .filter-icon-img {
+            transition: transform 0.3s ease;
+        }
+
+        /* Grow filter image on hover */
+        .filter-icon-img:hover {
+            transform: scale(1.05);
+            /* Scale the image by 1.05 on hover */
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            /* Add shadow for the hover hover effect */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+            <div class="container d-flex justify-content-between align-items-center w-100">
+                <div class="d-flex align-items-center">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="logo.png" alt="Concert Logo" style="max-width: 100px; height: auto; margin-top:8px;">
+                    </a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav d-flex">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Concert.html"
+                                    style="font-weight: bold; font-size: 1.0rem;">Concerts</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Artists</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Festivals</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"
+                                    style="font-weight: bold; font-size: 1.0rem;">Tourbox For Artists</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html"
+                                    style="font-weight: bold; font-size: 1.0rem;">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <form class="d-flex justify-content-center w-25" role="search">
+                    <div class="search-container">
+                        <input class="form-control" type="search" placeholder="Search for events or artists"
+                            aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </form>
+                <div class="d-flex align-items-center">
+                    <ul class="navbar-nav d-flex">
+                        <li class="nav-item"><a class="nav-link" href="#"
+                                style="font-weight: bold; font-size: 1.0rem;">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"
+                                style="font-weight: bold; font-size: 1.0rem;">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="game-rooms py-5 text-white" style="background-color: #C69DD2; 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center; /* Center the content horizontally */
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 50px;"> <!-- Reduced padding-top -->
+
+        <div class="heading-container"
+            style="display: flex; justify-content: space-between; align-items: center; margin-top: 50px; padding-left: 100px; padding-right: 100px;">
+            <!-- Left side for headings -->
+            <div style="text-align: left;">
+                <h2 class="mb-4 nonsubtitle" style="font-size: 1.8em; white-space: nowrap; margin-right: 500px;">
+                    UPCOMING CONCERTS</h2>
+                <h3 class="sub" style="font-size: 1.2em; margin-top: 5px; margin: 0; color: white;">Find your favourite
+                    concerts near your area</h3>
+            </div>
+
+            <!-- Right side for map icon and text -->
+            <div style="display: flex; align-items: center;">
+                <img src="map.png" alt="Map Icon" style="width: 40px; height: auto; margin-right: 10px;">
+                <span style="font-size: 1.1em; white-space: nowrap; margin-right: 50px; color: white;">Kuala
+                    Lumpur</span>
+            </div>
+        </div>
+
+
+        <!-- Icons Container -->
+        <div class="filters-container" style="margin-top: 50px;"> 
+            <!-- Filter Icon and Reset Button -->
+            <div class="filter-icon">
+                <!-- Filter Icon -->
+                <img src="filter.png" alt="Filter Icon" class="filter-icon-img"
+                    style="width: 36px; height: auto; margin-top:15px; cursor: pointer;">
+
+                <!-- Reset Button -->
+                <button class="btn reset-btn"
+                    style="width: 110px; font-size: 18px; margin-top: 15px; background-color: #CC8B8C; border: none; color: white;">Reset</button>
+            </div>
+
+            <!-- Sort Dropdown -->
+            <div style="display: flex; align-items: center; margin-top: 20px;">
+                <label for="sort-dropdown" class="sort-label" style="color: white;">Sort:</label>
+                <select id="sort-dropdown" class="sort-dropdown">
+                    <option value="alp">Alphabetical</option>
+                    <option value="new">Cheapest</option>
+                    <option value="top">Earliest</option>
+                    <option value="play">Latest</option>
+                    <option value="pop">Relevant</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="container" style="background-color: #C69DD2;">
+            <!-- 3x4 Grid Layout -->
+            <div class="row g-4">
+
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                    <div class="card" onclick="window.location.href='ConcertDetails.html';"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_7.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: auto; object-fit: cover; position: relative; top: -90px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 10px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>IVE RELAY TOUR CONCERT <br> 2025 IN KUALA LUMPUR</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>21 Jan
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Axiata <br>
+                                            Arena</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>5:00pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            90+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-md-4">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_1.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: auto; object-fit: cover; position: relative; top: -50px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 10px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>MEGACON [MEGA KPOP CONCERT MALAYSIA]</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>21 Jan
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Sunway <br>
+                                            Lagoon</strong></span>
+                                </div>
+                            </div>
+                            
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>5:00pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            90+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_2.jpeg" class="card-img-top" alt="{{title1}}"
+                            style="height: auto; object-fit: cover; position: relative; top: -50px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 12px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>HAVOC MIDNIGHT CONCERT</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>27 Jan
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Dataran
+                                            <br> Stadium</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>6:00pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            60+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-md-4">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_3.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: 300px; object-fit: cover; position: relative; top: -20px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 10px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>LIVE CONCERT SEARCH <br> VOYAGE OF ASIA 2025</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>28 Feb
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Johor <br>
+                                            Stadium</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>4:30pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <!-- Text beside Icon -->
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            75+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_8.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: 300px; object-fit: cover; position: relative; left:0px; top: -100px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 12px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>TREASURE TOUR CONCERT <br> 2025 IN KUALA LUMPUR</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>18 Feb
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span
+                                        style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Axiata<br>Arena</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>4:30pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            95+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="col">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_9.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: auto; object-fit: cover; position: relative; top: 0px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 10px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>ST LIVE CONCERT KUALA LUMPUR</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>27 Feb
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span
+                                        style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Zepp<br>Stadium</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>6:00pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            60+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="col">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_4.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: 150px; object-fit: cover; position: relative; left:0px; top: 0px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 12px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>INTIMATE CONCERT WITH UNGU</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>17 Mar
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Larkin <br>
+                                            Stadium</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>5:30pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            50+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="col">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_5.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: auto; object-fit: cover; position: relative; top: 0px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 10px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>5566 2056 CONCERT LIVE IN MALAYSIA</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>06 Apr
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Arena <br>
+                                            Stars</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>5:00pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            70+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="col">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_6.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: 180px; object-fit: cover; position: relative; top: 0px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 10px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>ROSSA HERE I AM CONCERT</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>26 Jun
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Axiata <br>
+                                            Arena</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>5:00pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            90+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="col">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_10.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: 180px; object-fit: cover; position: relative; top: 0px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 10px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>ENSEMBLE VIRAMA IN CONCERT</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>27 Jun
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <!-- Text beside Icon -->
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Sunway
+                                            Lagoon</strong></span>
+                                </div>
+                            </div>
+                            
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>5:30pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            50+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 11 -->
+                <div class="col-md-4">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_11.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: 200px; object-fit: cover; position: relative; top: -50px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 12px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>SUHO CONCERT 2025 IN KUALA LUMPUR</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>06 Aug
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Mega Star
+                                            Arena</strong></span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>5:00pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            70+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 12 -->
+                <div class="col-md-4">
+                    <div class="card"
+                        style="width: 300px; height: 300px; margin: 0 auto; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); cursor: pointer;">
+                        <!-- Image -->
+                        <img src="concert_12.jpg" class="card-img-top" alt="{{title1}}"
+                            style="height: 200px; object-fit: cover; position: relative; top: 0px;">
+
+                        <div
+                            style="position: absolute; top: 10px; left: 0px; width: 30px; height: 20px; background-color: #C68866; border-top-right-radius: 10px; border-bottom-right-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="star.png" alt="Star" style="width: 15px; height: 15px; margin-bottom:1px;">
+                        </div>
+
+                        <!-- White rectangle overlay -->
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background-color: white; border-radius: 0 0 10px 10px; padding: 1rem; display: flex; flex-direction: column; z-index: 1;">
+                            <!-- Title at the top left -->
+                            <h5
+                                style="color: black; font-size: 1.15rem; margin: 0; position: absolute; top: 10px; left: 10px; z-index: 2; margin-left:5px">
+                                <strong>(G)-IDLE TOUR CONCERT 2025 IN KUALA LUMPUR</strong>
+                            </h5>
+                            <!-- Icons and text -->
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; top: 30px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Calendar Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="calendar.png" alt="Calendar"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span style="color: black; margin-left:3px; font-size: 1.05em;"><strong>26 Aug
+                                            2025</strong></span>
+                                </div>
+
+                                <div
+                                    style="position: absolute; top: 25px; left: 15px; z-index: 2; display: flex; align-items: center;">
+                                    <!-- Location Icon -->
+                                    <img src="location.png" alt="Location"
+                                        style="width: 32px; height: 32px; margin-left: 140px;">
+                                    <span style="color: black; margin-left:10px; font-size: 1.05em;"><strong>Axiata
+                                            Arena</strong></span>
+                                </div>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; width: 100%; position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 2;">
+                                <!-- Clock Icon -->
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-left:5px;">
+                                    <img src="clock.png" alt="Clock"
+                                        style="width: 30px; height: 30px; margin-right: 5px;">
+                                    <span
+                                        style="color: black; margin-left:3px; font-size: 1.05em;"><strong>5:00pm</strong></span>
+                                </div>
+
+                                <div style="display: flex; align-items: center; margin-top: 35px; margin-right: 10px;">
+                                    <!-- Price Icon -->
+                                    <img src="ticket.png" alt="Price"
+                                        style="width: 35px; height: 35px; margin-right: 8px;">
+                                    <span
+                                        style="color: black; margin-right: 28px; margin-top:5px; font-size: 1.05em;"><strong>RM
+                                            90+</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <footer class="text-white py-4" style="background-color: #CC8B8C;">
+        <div class="container">
+            <div class="row">
+                <!-- Songkick Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Songkick</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">About us</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">News</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Blog</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Jobs</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Festivals</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Most popular charts</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Get the app</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Live streams</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industry Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Industry</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Campaigns for promoters</a>
+                        </li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">API information</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Help & FAQ</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Community <br> guidelines</a>
+                        </li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Brand <br> guidelines</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Cookies Policy</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Security</a></li>
+                    </ul>
+                </div>
+
+                <!-- Language Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Language</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">English</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Français</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Español</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Deutsch</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Português</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Chinese</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Malay</a></li>
+                    </ul>
+                </div>
+
+                <!-- Genre Section -->
+                <div class="col-md-2">
+                    <h5 style="color: rgb(70, 66, 66);">Genre</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Rock</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Pop</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Hip-Hop</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Electronic</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Metal</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Country</a></li>
+                        <li><a href="#" class="text-white" style="text-decoration: none;">Comedy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" style="margin-top: 50px;">
+                <!-- Social Media links  and Legal Text -->
+                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                    <!-- Social Media links on the left -->
+                    <div class="d-flex justify-content-start">
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="youtube.png" alt="YouTube"
+                                style="width: 20px; height: 20px; margin-right: 10px; margin-top:10px;">
+                            YouTube
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="instagram.png" alt="Instagram"
+                                style="width: 20px; height: 20px; margin-right: 10px;">
+                            Instagram
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="tik-tok.png" alt="TikTok" style="width: 20px; height: 20px; margin-right: 10px;">
+                            TikTok
+                        </div>
+                        <div class="subtitle d-flex align-items-center me-3" style=" cursor: pointer;">
+                            <img src="facebook.png" alt="Facebook"
+                                style="width: 20px; height: 20px; margin-right: 10px;">
+                            Facebook
+                        </div>
+                        <div class="subtitle d-flex align-items-center" style=" cursor: pointer;">
+                            <img src="twitter.png" alt="Twitter" style="width: 20px; height: 20px; margin-right: 10px;">
+                            X
+                        </div>
+                    </div>
+
+                    <!-- Parttner and legal text on the right -->
+                    <div class="ms-auto text-end"
+                        style="display: flex; flex-direction: column; align-items: flex-end; margin-top: -50px;">
+                        <span class="partner-text" style="color: rgb(70, 66, 66);"><strong>Official
+                                Partner</strong></span>
+                        <img src="partner.png" alt="Partner Image"
+                            style="max-width: 100%; height: auto; margin-bottom: 0px;">
+                        <span>
+                            <span class="text-white" style=" cursor: pointer;">Terms & Conditions</span>
+                            <span class="divider">|</span>
+                            <span class="text-white" style=" cursor: pointer;">Privacy Policy</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Chatbot Interfaces -->
+        <div class="col-md-8 text-md-end mt-4 mt-md-0" style="position: relative; top: 50px;">
+            <!-- Chat icon -->
+            <div id="chatbot-icon" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 9999;">
+                <img src="AI Chatbot.png" alt="Chatbot" style="width: 60px; height: 60px; object-fit: cover;">
+            </div>
+
+            <!-- Chatbot interface -->
+            <div id="chatbot-interface"
+                style="display: none; position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background-color: white; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index: 9999;">
+                <div style="background-color: #CC8B8C; color: white; padding: 10px; border-radius: 10px 10px 0 0;">
+                    <h5 style="margin: 0; text-align: left;">AI Chatbot</h5>
+                </div>
+                <!-- Chat messages -->
+                <div id="chat-messages"
+                    style="padding: 10px; overflow-y: scroll; height: 280px; max-height: 280px; color: black;">
+                </div>
+                <input type="text" id="user-input" placeholder="Type a message..."
+                    style="width: 100%; padding: 10px; border: none; border-radius: 0 0 10px 10px;" />
+                <button id="send-message"
+                    style="width: 100%; padding: 10px; background-color: #876969; color: white; border: none; border-radius: 0 0 10px 10px;">Send</button>
+            </div>
+        </div>
+
+        <!-- Chatbot Script -->
+        <script>
+            // Toggle visiblility of chatbot interface and show automatic message
+            document.getElementById('chatbot-icon').onclick = function () {
+                var chatbotInterface = document.getElementById('chatbot-interface');
+                var chatMessages = document.getElementById('chat-messages');
+
+                // Check the current state of the chatbot interface
+                if (chatbotInterface.style.display === 'none' || chatbotInterface.style.display === '') {
+                    // Show chatbot interface
+                    chatbotInterface.style.display = 'block';
+
+                    // Create welcome message from the chatbot
+                    var welcomeMessage = document.createElement('div');
+                    welcomeMessage.classList.add('chat-message');
+                    welcomeMessage.innerHTML = '<strong><span style="font-size: 0.8rem;">My name is Panicbot! How can I assist you today?</span></strong>';
+                    chatMessages.appendChild(welcomeMessage);
+
+                    // Scroll to the bottom of the container to show the message
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                } else {
+                    // Hide chatbot interface
+                    chatbotInterface.style.display = 'none';
+                }
+            };
+
+            // Handle message sending when the user clicks the send button
+            document.getElementById('send-message').onclick = function () {
+                var userInput = document.getElementById('user-input').value;
+                if (userInput.trim() !== "") {
+                    var userMessage = document.createElement('div');
+                    userMessage.innerHTML = '<div class="user-message"><strong><span style="font-size: 0.8em;">' + userInput + '</span></strong></div>';
+                    document.getElementById('chat-messages').appendChild(userMessage);
+
+                    // Clear input field
+                    document.getElementById('user-input').value = "";
+
+                    // Simulate chatbot response after 1 second
+                    setTimeout(function () {
+                        var chatbotResponse = document.createElement('div');
+                        chatbotResponse.classList.add('chat-message');
+                        chatbotResponse.innerHTML = '<strong><span style="font-size: 0.8rem;">Thank you for your response.</span></strong>';
+                        document.getElementById('chat-messages').appendChild(chatbotResponse);
+
+                        // Scroll to the bottom of the messages to show new response
+                        var chatContainer = document.getElementById("chat-messages");
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }, 1000);
+                }
+            };
+
+            // Trigger send message when the Enter key is pressed
+            document.getElementById('user-input').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('send-message').click();
+                }
+            });
+        </script>
+
+        <!-- Footer -->
+        <footer class="text-center py-3" style="margin-top: 50px;">
+            <p><span style="color: rgb(70, 66, 66);"><strong>For Fans, by Fans</strong></span></p>
+            <p style="color: rgb(255, 255, 255); margin-top: -5px; margin-bottom: 0;">© 2024 Copyright.Songkick</p>
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
